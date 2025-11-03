@@ -1,4 +1,4 @@
-"use-client"
+"use client"
 
 import Landing from "@/components/Landing"
 import NavBar from "@/components/Nav"
