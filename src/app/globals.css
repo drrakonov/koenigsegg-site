@@ -25,12 +25,21 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-/* for all browsers */
+.mask-clip {
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;  
+}
+
+.mask-clip span {
+  -webkit-text-stroke: 8px transparent; /* adds thickness */
+}
+
 ::-webkit-scrollbar {
   display: none;
 }
 
 html, body {
-  scrollbar-width: none;    /* Firefox */
-  -ms-overflow-style: none; /* IE/Edge */
+  scrollbar-width: none;   
+  -ms-overflow-style: none; 
 }
