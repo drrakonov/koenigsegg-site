@@ -35,11 +35,11 @@ body {
   -webkit-text-stroke: 8px transparent; /* adds thickness */
 }
 
-::-webkit-scrollbar {
+/* ::-webkit-scrollbar {
   display: none;
 }
 
 html, body {
   scrollbar-width: none;   
   -ms-overflow-style: none; 
-}
+} */

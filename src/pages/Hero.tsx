@@ -3,9 +3,7 @@
 import CarVideo from "@/components/CarVideo"
 import Landing from "@/components/Landing"
 import NavBar from "@/components/Nav"
-import { useEffect, useState } from "react"
-
-
+import { useEffect, useRef, useState } from "react"
 
 const Hero = () => {
   const [isPlaying, setIsPlaying] = useState(false)
