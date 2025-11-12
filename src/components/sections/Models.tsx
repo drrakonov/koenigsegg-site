@@ -1,6 +1,11 @@
+"use client"
+import gsap from "gsap";
+import { SplitText } from "gsap/SplitText";
 import { ChevronLeft, ChevronRight, MoveRightIcon } from "lucide-react";
+import { AnimatePresence, motion } from "motion/react";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
 
 const carModels = [
     {
@@ -30,6 +35,22 @@ const carModels = [
 
 ]
 
+const variants = {
+    enter: (dir: number) => ({
+        x: dir > 0 ? 20 : -20,
+        opacity: 0,
+    }),
+    center: {
+        x: 0,
+        opacity: 1,
+    },
+    exit: (dir: number) => ({
+        x: dir > 0 ? -20 : 20,
+        opacity: 0,
+    })
+}
+gsap.registerPlugin(SplitText);
+
 
 const Models = () => {
     const [currentModel, setCurrentModel] = useState(0);
@@ -46,6 +67,71 @@ const Models = () => {
         setCurrentModel((prev) => (prev - 1 + carModels.length) % carModels.length);
     }
 
+    useEffect(() => {
+        if (typeof document === "undefined") return;
+        document.fonts.ready.then(() => {
+            gsap.set(".model-para", { opacity: 1 })
+
+            let splitPara: any;
+            SplitText.create(".model-para", {
+                type: "lines",
+                linesClass: "line",
+                autoSplit: true,
+                mask: "lines",
+                onSplit: (self) => {
+                    splitPara = gsap.from(self.lines, {
+                        duration: 0.4,
+                        yPercent: 100,
+                        opacity: 0,
+                        stagger: {
+                            amount: 0.4,
+                        },
+                        ease: "expo.out",
+                    });
+                    return splitPara;
+                }
+            })
+
+            document.querySelector(".toggle-btn")?.addEventListener("click", (e) => {
+                splitPara.timeScale(0.2).play(0);
+            })
+        });
+    }, [model]);
+
+    useEffect(() => {
+        if(typeof document === "undefined") return;
+
+        document.fonts.ready.then(() => {
+            gsap.set(".model-heading", { opacity: 1 });
+
+            let splitModelHeading: any;
+            SplitText.create(".model-heading", {
+                type: "chars",
+                autoSplit: true,
+                mask: "chars",
+                onSplit: (self) => {
+                    splitModelHeading = gsap.from(self.chars, {
+                        yPercent: 20,
+                        ease: "back.out",
+                        autoAlpha: 0,
+                        //yoyo: true,
+                        stagger: {
+                            amount: 0.4,
+                            from: "random"
+                        }
+                    })
+                    return splitModelHeading;
+                }
+            })
+            document.querySelector(".toggle-btn")?.addEventListener("click", (e) => {
+                splitModelHeading.timeScale(0.1).play(0);
+            })
+        })
+
+    }, [model])
+
+
+
     return (
         <>
             <div className="h-40 bg-linear-to-b from-[#1F1F1F] to-background"></div>
@@ -61,29 +147,41 @@ const Models = () => {
                 <div className="flex-1 relative flex flex-col md:flex-row justify-center md:items-center w-full">
                     <div className="w-full md:w-1/2 h-fit md:pl-10 flex items-center">
                         <div className="w-full md:w-[50vw] flex md:pl-10 items-center">
-                            <Image
-                                className="object-cover"
-                                src={model.imagePath}
-                                alt="car-models"
-                                width={800}
-                                height={500}
-                            />
+                            <AnimatePresence mode="wait" custom={direction}>
+                                <motion.div
+                                    key={model.imagePath}
+                                    variants={variants}
+                                    custom={direction}
+                                    initial="enter"
+                                    animate="center"
+                                    exit="exit"
+                                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                                >
+                                    <Image
+                                        className="object-cover"
+                                        src={model.imagePath}
+                                        alt="car-models"
+                                        width={800}
+                                        height={500}
+                                    />
+                                </motion.div>
+                            </AnimatePresence>
                         </div>
                     </div>
                     <div className="w-full md:absolute flex justify-between px-2">
-                        <button onClick={prevModel} className="cursor-pointer">
+                        <button onClick={prevModel} className="toggle-btn cursor-pointer">
                             <ChevronLeft size={35} />
                         </button>
-                        <button onClick={nextModel} className="cursor-pointer">
+                        <button onClick={nextModel} className="toggle-btn cursor-pointer">
                             <ChevronRight size={35} />
                         </button>
                     </div>
                     <div className="w-full md:w-1/2 h-fit md:pr-10 px-3 flex flex-col justify-center space-y-5 md:space-y-15">
-                        <span className="text-white uppercase px-30 md:px-8 text-[30px] md:text-[40px]">
-                            <h1 className="justify-self-start">{model.line1}</h1>
-                            <h1 className="justify-self-center">{model.line2}</h1>
+                        <span className="text-white uppercase px-15 md:px-8 text-[30px] md:text-[40px]">
+                            <h1 className="model-heading justify-self-start">{model.line1}</h1>
+                            <h1 className="model-heading justify-self-center">{model.line2}</h1>
                         </span>
-                        <p className="text-white text-sm sm:text-lg">
+                        <p className="model-para text-white text-sm sm:text-lg">
                             {model.para}
                         </p>
                     </div>
