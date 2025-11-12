@@ -1,13 +1,15 @@
 "use client"
 
+import Models from "./sections/Models";
 import StackSection from "./sections/StackSection"
 
 const Landing = () => {
 
 
     return (
-        <div className="flex min-h-screen">
-            <StackSection />
+        <div className="">
+            <Models />
+            <StackSection />        
         </div>
     )
 }
