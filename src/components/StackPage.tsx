@@ -13,7 +13,7 @@ const StackPage = ({ line, imagePath }: StackPageProps) => {
             {/* art becomes obsession. */}
             <h1 className={`mask-clip 
                     leading-[140%] tracking-widest sm:tracking-normal sm:leading-[100%] lg:leading-[150%] xl:leading-40 
-                    font-black text-[45px] xs:text-[80px] sm:text-[100px] md:text-[150px] lg:text-[180px] xl:text-[200px] 
+                    font-black text-[45px] xs:text-[80px] sm:text-[100px] md:text-[120px] lg:text-[160px] xl:text-[180px] 
                     flex flex-col h-[90%] w-[95%] sm:w-[90%] justify-center items-center 
                     bg-cover bg-center bg-no-repeat ${imagePath}`}>
                 {line.map((txt, id) => (

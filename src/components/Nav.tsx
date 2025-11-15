@@ -37,7 +37,7 @@ const NavBar = () => {
 
 
     return (
-        <div className="fixed inset-0  w-full mt-4 h-15 py-1 px-10 flex justify-between items-center overflow-hidden">
+        <div className="fixed inset-0 z-100  w-full mt-4 h-15 py-1 px-10 flex justify-between items-center overflow-hidden">
             <KoenigseggLogo className="logo h-[80%] opacity-0" />
             <Menu ref={menuRef} className="menu h-[2em] w-[3em] cursor-pointer opacity-0" />
         </div>
