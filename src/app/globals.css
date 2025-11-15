@@ -28,12 +28,37 @@ body {
 .mask-clip {
   background-clip: text;
   -webkit-background-clip: text;
-  color: transparent;  
+  color: transparent;
 }
 
 .mask-clip span {
-  -webkit-text-stroke: 8px transparent; /* adds thickness */
+  -webkit-text-stroke: 8px transparent;
+  /* adds thickness */
 }
+
+.custom-border {
+  --mask-url: url('/svg/footer_cutout.svg');
+
+  -webkit-mask-image: var(--mask-url);
+  mask-image: var(--mask-url);
+
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+
+  -webkit-mask-position: center;
+  mask-position: center;
+}
+
+
+@media only screen and (max-width: 629px) {
+  .custom-border {
+    --mask-url: url('/svg/cutout_tablet.svg');
+  }
+}
+
 
 /* ::-webkit-scrollbar {
   display: none;
