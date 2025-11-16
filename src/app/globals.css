@@ -19,6 +19,16 @@
   }
 }
 
+
+@font-face {
+    font-family: font1;
+    src: url('/public/fonts/Lausanne-300.woff2');
+}
+@font-face {
+    font-family: font2;
+    src: url('/public/fonts//Lausanne-500.woff2');
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
@@ -60,11 +70,37 @@ body {
 }
 
 
-/* ::-webkit-scrollbar {
+.moveX {
+  animation-name: moveAnimation;
+  animation-duration: 10s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+.moveLink{
+    opacity: 0;
+    transition: all ease 0.3s;
+}
+
+.link:hover .moveLink{
+    opacity: 1;
+}
+
+@keyframes moveAnimation {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+
+::-webkit-scrollbar {
   display: none;
 }
 
 html, body {
   scrollbar-width: none;   
   -ms-overflow-style: none; 
-} */
+}
