@@ -29,7 +29,7 @@ const HorizontalPage = () => {
 
     return (
         <div className="horizontal-section min-h-screen w-[300vw] bg-background flex">
-            <div className="tech-ach h-screen w-screen grid sm:grid-cols-8 bg-background py-15 sm:py-0 pl-20 pr-10">
+            <div className="tech-ach h-screen w-screen grid sm:grid-cols-8 bg-background py-15 sm:py-0 pl-5 sm:pl-20 pr-10 gap-3 sm:gap-10 md:gap-5">
                 <div className="grid order-2 sm:order-1 col-span-3 py-2 sm:py-30 gap-3 sm:gap-3">
                     <span className="text-[0.9em] sm:text-[1.3em] uppercase leading-5">Technological <br /> Achievements</span>
                     <p className="text-sm sm:text-[1em] md:text-[1.2em] leading-tight">

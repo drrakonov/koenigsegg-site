@@ -134,7 +134,6 @@ const Models = () => {
 
     return (
         <>
-            <div className="h-40 bg-linear-to-b from-[#1F1F1F] to-background"></div>
             <div className="md:h-[850px] w-full flex flex-col py-3">
                 <h1 className="flex items-center justify-between px-2 md:px-10">
                     <span className="uppercase text-[2em] md:text-[50px]">Models</span>

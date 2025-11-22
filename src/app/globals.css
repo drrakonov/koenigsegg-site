@@ -14,20 +14,11 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
+    --background: #020202;
     --foreground: #ededed;
   }
 }
 
-
-@font-face {
-    font-family: font1;
-    src: url('/public/fonts/Lausanne-300.woff2');
-}
-@font-face {
-    font-family: font2;
-    src: url('/public/fonts//Lausanne-500.woff2');
-}
 
 body {
   background: var(--background);
