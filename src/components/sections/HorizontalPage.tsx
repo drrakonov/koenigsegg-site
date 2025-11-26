@@ -12,7 +12,7 @@ const HorizontalPage = () => {
     useGSAP(() => {
 
         gsap.to(".horizontal-section", {
-            xPercent: -66.85,
+            xPercent: -66.66,
             ease: "none",
             scrollTrigger: {
                 trigger: ".horizontal-section",
