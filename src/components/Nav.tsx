@@ -15,13 +15,8 @@ const NavBar = () => {
     const originalPath = "M3.75 9h16.5m-16.5 5.75h16.5"
     const hoverPath = "M3.75 9h16.5m-16.5 6.75h16.5"
 
-    useEffect(() => {
-        console.log("navOpen:", navOpen);
-    }, [navOpen])
-
     const toggleNav = () => {
         if(isAnimating) return;
-        console.log("khull rha hun")
         setNavOpen(true);
     }
 

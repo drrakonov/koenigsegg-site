@@ -17,10 +17,7 @@ const FullScreenNav = () => {
 
     const toggleNav = () => {
         if(isAnimating) return;
-
-        console.log("band ho rha hun");
         setNavOpen(false);
-
     }
 
     function pageTransitionAnimation() {
