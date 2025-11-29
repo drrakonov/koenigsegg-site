@@ -1,4 +1,5 @@
 "use client"
+import useIsAnimating from "@/store/useIsAnimating";
 import useNav from "@/store/useNavOpen";
 import KoenigseggLogo from "@/svgs/KoenigseggLogo";
 import { useGSAP } from "@gsap/react";
@@ -11,9 +12,24 @@ const FullScreenNav = () => {
     const fullScreenRef = useRef(null);
     const fullNavLinksRef = useRef(null);
     const { navOpen, setNavOpen } = useNav();
+    const { isAnimating, setIsAnimating } = useIsAnimating();
+
+
+    const toggleNav = () => {
+        if(isAnimating) return;
+
+        console.log("band ho rha hun");
+        setNavOpen(false);
+
+    }
 
     function pageTransitionAnimation() {
-        const tl = gsap.timeline();
+        setIsAnimating(true);
+
+        const tl = gsap.timeline({
+            onComplete: () => setIsAnimating(false)
+        });
+
         tl.to('.fullscreennav', {
             display: 'block',
         })
@@ -34,10 +50,16 @@ const FullScreenNav = () => {
         tl.to('.navlink', {
             opacity: 1
         })
+        
     }
 
     function pageTransitionAnimationReverse() {
-        const tl = gsap.timeline();
+        setIsAnimating(true);
+        
+        const tl = gsap.timeline({
+            onComplete: () => setIsAnimating(false)
+        });
+
         tl.to('.navlink', {
             opacity: 0
         })
@@ -57,6 +79,7 @@ const FullScreenNav = () => {
         tl.to('.fullscreennav', {
             display: 'none',
         })
+        
     }
 
     useGSAP(() => {
@@ -83,9 +106,7 @@ const FullScreenNav = () => {
             <div ref={fullNavLinksRef} className="relative">
                 <div className="navlink flex w-full justify-between p-5 items-center">
                     <KoenigseggLogo className="w-35 md:w-45" />
-                    <div onClick={() => { 
-                        setNavOpen(false) 
-                    }} className="h-20 md:h-30 w-20 md:w-30 cursor-pointer">
+                    <div onClick={toggleNav} className="h-20 md:h-30 w-20 md:w-30 cursor-pointer">
                         <X className="h-full w-full text-white hover:text-[#ffb703]" strokeWidth={"0.4"} />
                     </div>
                 </div>
